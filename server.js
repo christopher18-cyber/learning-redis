@@ -19,3 +19,5 @@ async function testRedisConnection() {
         await client.quit()
     }
 }
+
+testRedisConnection()
