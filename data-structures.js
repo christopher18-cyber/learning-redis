@@ -47,6 +47,46 @@ async function redisDataStructure() {
 
         // sorted sets
         // ZADD, ZRANGE, ZRANK, ZREM
+
+        // await client.zAdd("cart", [{
+        //     score: 100, value: "cart 1"
+        // },
+        // {
+        //     score: 150, value: "cart 2"
+        // },
+        // {
+        //     score: 10, value: "cart 3"
+        // }])
+
+        // const getTopCartItems = await client.zRange("cart", 0, -1)
+        // console.log(getTopCartItems);
+
+        // const extractAllItemsWithScore = await client.zRangeWithScores("cart", 0, -1)
+        // console.log(extractAllItemsWithScore);
+
+        // const cartTwoRank = await client.zRank("cart", "cart 1")
+        // console.log(cartTwoRank + 1);
+
+        // hashes -> HGET,HSET,HGETALL,HDEL
+        await client.hSet("product:1", {
+            name: "Product 1",
+            description: "product one description",
+            rating: "5"
+        })
+
+        const getProductRating = await client.hGet("product:1", "rating")
+        console.log(getProductRating);
+
+        const getProductDetail = await client.hGetAll("product:1")
+        console.log(getProductDetail);
+
+        await client.hDel("product:1", "ranking")
+        const updatedProduct = await client.hGetAll("product:1")
+        console.log(updatedProduct);
+
+
+
+
     }
     catch (err) {
         console.error(err);
